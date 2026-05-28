@@ -15,7 +15,7 @@ end
 local function downloadFile(path, func)
 	if not isfile(path) then
 		local suc, res = pcall(function() 
-			return game:HttpGet('https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/'..readfile('newvape/profiles/commit.txt')..'/'..select(1, path:gsub('newvape/', '')), true) 
+			return game:HttpGet('https://raw.githubusercontent.com/MADMONEYDISTRO/featherclientv0.0.1/'..readfile('newvape/profiles/commit.txt')..'/'..select(1, path:gsub('newvape/', '')), true) 
 		end)
 		if not suc or res == '404: Not Found' then 
 			error(res) 
@@ -28,16 +28,16 @@ local function downloadFile(path, func)
 	return (func or readfile)(path)
 end
 
-vape.Place = 6872274481
-if isfile('newvape/games/'..vape.Place..'.lua') then
-	loadstring(readfile('newvape/games/'..vape.Place..'.lua'), 'bedwars')()
+-- This loads the universal script every time, no game ID needed.
+if isfile('newvape/games/universal.lua') then
+	loadstring(readfile('newvape/games/universal.lua'), 'universal')()
 else
 	if not shared.VapeDeveloper then
 		local suc, res = pcall(function() 
-			return game:HttpGet('https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/'..readfile('newvape/profiles/commit.txt')..'/games/'..vape.Place..'.lua', true) 
+			return game:HttpGet('https://raw.githubusercontent.com/MADMONEYDISTRO/featherclientv0.0.1/'..readfile('newvape/profiles/commit.txt')..'/games/universal.lua', true) 
 		end)
 		if suc and res ~= '404: Not Found' then
-			loadstring(downloadFile('newvape/games/'..vape.Place..'.lua'), 'bedwars')()
+			loadstring(downloadFile('newvape/games/universal.lua'), 'universal')()
 		end
 	end
 end
